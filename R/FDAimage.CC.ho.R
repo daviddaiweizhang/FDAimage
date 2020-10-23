@@ -102,8 +102,8 @@ FDAimage.CC.ho <- function(B,Q2,K,X,Y,lambda,alpha0=0.05,nboot=100,ksi=0.01){
     Geta <- cbind(Geta,apply(BQ2,1,function(x) x%*%A.temp%*%x))
   }
   Sigma <- Geta/n
-  if(is.null(nboot){
-      return(list(cc.l=NA,cc.u.=NA,beta.hat=beta,alpha.adj=NA,Sigma=Sigma))
+  if(nboot == -1){
+      return(list(cc.l=NA,cc.u=NA,beta.hat=beta,alpha.adj=NA,Sigma=Sigma))
   }
 
   ######################################################################
@@ -164,5 +164,5 @@ FDAimage.CC.ho <- function(B,Q2,K,X,Y,lambda,alpha0=0.05,nboot=100,ksi=0.01){
 
   cc.l <- beta-sqrt(Sigma)*Za
   cc.u <- beta+sqrt(Sigma)*Za
-  list(cc.l=cc.l,cc.u.=cc.u,beta.hat=beta,alpha.adj=a.adjust,Sigma=Sigma)
+  list(cc.l=cc.l,cc.u=cc.u,beta.hat=beta,alpha.adj=a.adjust,Sigma=Sigma)
 }
